@@ -47,7 +47,7 @@ AddEventHandler('esx_repairkit:onUse', function()
 		if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
 			local vehicle = nil
 			else
-				ESX.ShowNotification(_U('no_vehicle_nearby'))
+				ESX.ShowNotification(_U('must_be_outside'))
 		end
 
 		if IsPedInAnyVehicle(playerPed, false) then
@@ -149,7 +149,7 @@ function GetClosestVehicleTire(vehicle)
 			if distance <= minDistance then
 				closestTire = {bone = tireBones[a], boneDist = distance, bonePos = bonePos, tireIndex = tireIndex[tireBones[a]]}
 			else
-				ESX.ShowNotification(_U('not_near_tyre'))
+				ESX.ShowNotification(_U('not_near_tire'))
 			end
 		else
 			if distance < closestTire.boneDist then
@@ -197,7 +197,7 @@ AddEventHandler('tyrekit:onUse', function()
 					SetVehicleTyreFixed(vehicle, closestTire.tireIndex)
 					SetVehicleWheelHealth(vehicle, closestTire.tireIndex, 100)
 					ClearPedTasks(playerPed)
-					ESX.ShowNotification(_U('finished_tyre_repair'))
+					ESX.ShowNotification(_U('finished_tire_repair'))
 				if isReparing == true then
 					isReparing = not isReparing
 				end
@@ -214,7 +214,7 @@ AddEventHandler('tyrekit:onUse', function()
 					ClearPedTasksImmediately(playerPed)
 					TerminateThread(ThreadID2)
 					
-						ESX.ShowNotification(_U('aborted_tyre_repair'))
+						ESX.ShowNotification(_U('aborted_repair_tire'))
 						isReparing = not isReparing
 						CurrentAction = nil
 				end
